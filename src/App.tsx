@@ -8,6 +8,8 @@ import NotFound from "./pages/NotFound";
 import { VerifierLayout } from "./components/VerifierLayout";
 import VerifierDashboard from "./pages/VerifierDashboard";
 import VerifierClients from "./pages/VerifierClients";
+import VerifierSettings from "./pages/VerifierSettings";
+import VerifierRemarks from "./pages/VerifierRemarks";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ const App = () => (
           <Route path="/verifier" element={<VerifierLayout />}>
             <Route path="dashboard" element={<VerifierDashboard />} />
             <Route path="clients" element={<VerifierClients />} />
+            <Route path="settings" element={<VerifierSettings />} />
+            <Route path="remarks" element={<VerifierRemarks />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

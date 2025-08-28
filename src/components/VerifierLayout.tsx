@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from "react-router-dom";
-import { LayoutDashboard, Users, Settings, HelpCircle, Bell } from "lucide-react";
+import { LayoutDashboard, Users, Settings, HelpCircle, Bell, MessageSquare } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -17,6 +17,11 @@ import { Button } from "@/components/ui/button";
 const navigation = [
   { title: "Dashboard", url: "/verifier/dashboard", icon: LayoutDashboard },
   { title: "Clients", url: "/verifier/clients", icon: Users },
+  { title: "Remarks", url: "/verifier/remarks", icon: MessageSquare },
+];
+
+const bottomNavigation = [
+  { title: "Settings", url: "/verifier/settings", icon: Settings },
 ];
 
 export function VerifierLayout() {
@@ -62,12 +67,23 @@ export function VerifierLayout() {
               <SidebarGroup>
                 <SidebarGroupContent>
                   <SidebarMenu>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton>
-                        <Settings className="mr-3 h-4 w-4" />
-                        <span>Settings</span>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
+                    {bottomNavigation.map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton asChild>
+                          <NavLink
+                            to={item.url}
+                            className={({ isActive }) =>
+                              isActive
+                                ? "bg-accent text-accent-foreground font-medium"
+                                : "hover:bg-accent/50"
+                            }
+                          >
+                            <item.icon className="mr-3 h-4 w-4" />
+                            <span>{item.title}</span>
+                          </NavLink>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
                   </SidebarMenu>
                 </SidebarGroupContent>
               </SidebarGroup>
